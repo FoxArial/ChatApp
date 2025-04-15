@@ -26,7 +26,7 @@ export default {
       favicon: "./assets/favicon.png",
     },
   },
-  exta: {
+  extra: {
     apiKey: process.env.Api_Key,
     authDomain: process.env.Auth_Domain,
     projectId: process.env.Project_Id,
