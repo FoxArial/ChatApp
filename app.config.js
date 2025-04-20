@@ -1,4 +1,4 @@
-import "dotenv/config";
+import 'dotenv/config';
 export default {
   expo: {
     name: "ChatApp",
@@ -25,13 +25,13 @@ export default {
     web: {
       favicon: "./assets/favicon.png",
     },
+    extra: {
+    apiKey: process.env.API_KEY,
+    authDomain: process.env.AUTH_DOMAIN,
+    projectId: process.env.PROJECT_ID,
+    storageBucket: process.env.STORAGE_BUCKET,
+    messagingSenderId: process.env.MESSAGING_SENDER_ID,
+    appId: process.env.APP_ID,
   },
-  extra: {
-    apiKey: process.env.Api_Key,
-    authDomain: process.env.Auth_Domain,
-    projectId: process.env.Project_Id,
-    storageBucket: process.env.Storage_Bucket,
-    messagingSenderId: process.env.Messaging_Sender_Id,
-    appId: process.env.App_Id,
-  },
+}
 };

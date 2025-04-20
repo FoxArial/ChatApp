@@ -5,28 +5,29 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from "expo-constants";
 
 const firebaseConfig = {
-  apiKey: Constants.manifest2.extra.apiKey,
-  authDomain: Constants.expomanifest2Config.extra.authDomain,
-  projectId: Constants.manifest2.extra.projectId,
-  storageBucket: Constants.manifest2.extra.storageBucket,
-  messagingSenderId: Constants.manifest2.extra.messagingSenderId,
-  appId: Constants.manifest2.extra.appId,
+  apiKey: Constants.expoConfig?.extra?.apiKey,
+  authDomain: Constants.expoConfig?.extra?.authDomain,
+  projectId: Constants.expoConfig?.extra?.projectId,
+  storageBucket: Constants.expoConfig?.extra?.storageBucket,
+  messagingSenderId: Constants.expoConfig?.extra?.messagingSenderId,
+  appId: Constants.expoConfig?.extra?.appId,
 };
 
-const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
+let app, auth;
 
-let auth;
-
-if (getApps().length === 0) {
+if(!getApps().length){
+  app = initializeApp(firebaseConfig);
   auth = initializeAuth(app, {
-    persistence: getReactNativePersistence(AsyncStorage),
-  });
-} else {
+    persistence: getReactNativePersistence(AsyncStorage)
+  })
+}else{
+  app = getApp();
   auth = getAuth(app);
 }
 
+
 const database = getFirestore(app);
-console.log("API KEY:", firebaseConfig.apiKey);
+
 
 const userRef = collection(database, 'users');
 const roomRef = collection(database, 'rooms');

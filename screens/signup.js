@@ -30,7 +30,7 @@ export default function SignUpScreen({navigation}) {
       await setDoc(doc(database,"users", response?.user?.uid),{
         UserName, profileURL, userID: response?.user?.uid
       });
-      console.log("User created", response?.user);
+      console.log("response.user: ", response?.user);
       navigation.navigate("Home");
       return {success: true, data: response?.user};
     } catch (error) {
