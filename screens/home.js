@@ -35,9 +35,7 @@ export default function HomeScreen({navigation}) {
 
   return (
     <SafeAreaView style={{ flex: 1,backgroundColor: COLORS.background}}>
-    <View style={{flex:1}}>
-      <StatusBar/>
-        
+    <View style={{flex:1}}>        
     {
       users.length>0? (<ChatList users={users} navigation={navigation}/>):(
         <View style={{flex: 1, justifyContent: 'center'}}> 

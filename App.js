@@ -10,7 +10,9 @@ import LoginScreen from "./screens/login";
 import HomeScreen from "./screens/home";
 import SignUpScreen from "./screens/signup";
 import HomeHeader from "./config/homeheader";
+
 import { MenuProvider } from 'react-native-popup-menu';
+import COLORS from "./screens/const";
 const Stack = createStackNavigator();
 
 function AuthStack() {
@@ -24,13 +26,16 @@ function AuthStack() {
 
 function AppStack() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ 
+      headerStyle: {backgroundColor: COLORS.primary} }}>
       <Stack.Screen name="Home"
       component={HomeScreen}
       options={{
         header: ()=> <HomeHeader/>
       }} />
-      <Stack.Screen name="Chat" component={Chat}  options={{ headerShown: false }} />
+      <Stack.Screen name="Chat" 
+      component={Chat}  
+      options={{ headerShown: false }}/>
     </Stack.Navigator>
   );
 }
