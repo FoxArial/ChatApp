@@ -8,6 +8,7 @@ export default {
     icon: "./assets/icon.png",
     userInterfaceStyle: "light",
     newArchEnabled: true,
+    plagins: ["expo-router"],
     splash: {
       image: "./assets/splash-icon.png",
       resizeMode: "contain",
@@ -25,6 +26,7 @@ export default {
     web: {
       favicon: "./assets/favicon.png",
     },
+    
     extra: {
     apiKey: process.env.API_KEY,
     authDomain: process.env.AUTH_DOMAIN,

@@ -22,7 +22,7 @@ export default function HomeHeader(){
         await logout();
     }
     return (
-        <View style={{paddingTop: ios? top:top+10}}>
+        <View style={{backgroundColor: COLORS.background}}>
         <View style={styles.container}>
             <View> 
                 <Text style={{fontSize:hp(3), color:COLORS.background}}> CHATS</Text>
