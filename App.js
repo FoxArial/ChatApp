@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { AuthContextProvider } from "./config/authContext";
 import { useAuth } from "./config/authContext";
 import { View, ActivityIndicator } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import Chat from "./screens/chat";
 import LoginScreen from "./screens/login";
@@ -59,10 +60,12 @@ function RootNavigator() {
 
 export default function App() {
   return (
+    <SafeAreaProvider>
     <MenuProvider>
   <AuthContextProvider>
   <RootNavigator />
   </AuthContextProvider>
   </MenuProvider>
+  </SafeAreaProvider>
   )
 }

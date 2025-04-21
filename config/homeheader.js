@@ -16,13 +16,13 @@ import { MenuItem } from "./customMetuOptions";
 const ios = Platform.OS =='ios';
 export default function HomeHeader(){
     const {user,logout} = useAuth();
-    const{top} = useSafeAreaInsets();
+    const insets = useSafeAreaInsets();
     const handleProfile = () =>{};
     const handleLogOut = async ()=>{
         await logout();
     }
     return (
-        <View style={{backgroundColor: COLORS.background}}>
+        <View style={[{backgroundColor: COLORS.background},{ paddingTop: insets.top }]}>
         <View style={styles.container}>
             <View> 
                 <Text style={{fontSize:hp(3), color:COLORS.background}}> CHATS</Text>

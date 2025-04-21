@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { StatusBar } from "react-native";
 import { SafeAreaView, Text, TouchableOpacity, View } from "react-native";
 import { useAuth } from "../config/authContext";
@@ -8,13 +8,17 @@ import { ActivityIndicator } from "react-native";
 import ChatList from "../config/ChatList";
 import { where, getDocs, query, doc } from "firebase/firestore";
 import { userRef } from "../config/firebase";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function HomeScreen({navigation}) {
   const {logout, user} = useAuth();
   const [users, setUsers] = useState([]);
+  const fetchedRef = useRef(false);
+  const insets = useSafeAreaInsets();
   useEffect(() => {
-    if (user?.uid) {
+    if (user?.uid && !fetchedRef.current) {
       getUsers();
+      fetchedRef.current = true;
     }
   }, [user?.uid]);
   
