@@ -11,10 +11,12 @@ import {
 } from "react-native";
 import { signInWithEmailAndPassword } from "firebase/auth/web-extension";
 import { auth } from "../config/firebase";
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import COLORS from "./const";
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 export default function LoginScreen({ navigation }) {
+  const insets = useSafeAreaInsets();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -34,11 +36,12 @@ export default function LoginScreen({ navigation }) {
   return (
     <KeyboardAvoidingView
     style={{ flex: 1 }}
-    behavior={Platform.OS === "ios" ? "padding" : "height"}
-  >
+    behavior={Platform.OS === "ios" ? "padding" : "undefined"}>
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.background, }}>
-    <ScrollView >
+    <SafeAreaView style={[{ flex: 1, backgroundColor: COLORS.background, },{ marginTop: insets.top }]}>
+      <ScrollView 
+      bounces={false}
+      showsVerticalScrollIndicator={false}>
      <View style={{flex:1}}>
       <Image source={require("../assets/Login.jpg")} style={styles.imgTop}/>
      </View>

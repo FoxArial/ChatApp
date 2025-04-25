@@ -10,12 +10,12 @@ export const AuthContextProvider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(undefined);
 
   useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (user) => {
+    const unsub = onAuthStateChanged(auth, async (firebaseUser) => {
       //console.log("got user: ", user);
-      if (user) {
+      if (firebaseUser) {
         setIsAuth(true);
-        setUser(user);
-        updateUserData(user.uid);
+        setUser(firebaseUser);
+        updateUserData(firebaseUser.uid);
       } else {
         setIsAuth(false);
         setUser(null);
@@ -32,7 +32,10 @@ export const AuthContextProvider = ({ children }) => {
     if (docSnap.exists()){
       let data = docSnap.data();
       console.log(data);
-      setUser({...user, username: data.username, profileUrl: data.profileURL, userId: data.userId} );
+      setUser({...user,
+        username: data.UserName, 
+        profileUrl: data.profileURL, 
+        userId: data.userID} );
     }
     
   }
